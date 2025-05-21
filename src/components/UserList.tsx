@@ -1,8 +1,10 @@
+import { SearchInput } from "./SearchInput";
 
 const UserList = () => (
     <section>
-        <h2 className="text-xl font-semibold mb-2">لیست کاربران </h2>
         {/* Users List Component */}
+        <h2 className="text-xl font-semibold mb-2">لیست کاربران </h2>
+        <SearchInput />
     </section>
 );
 export default UserList;
