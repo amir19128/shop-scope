@@ -4,6 +4,7 @@ import { useGetUsersQuery } from "@/store/services/userApi";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import SearchInput from "./SearchInput";
+import Skeleton from "./Skeleton";
 
 const UserList = () => {
     const { data: users, isLoading, isError } = useGetUsersQuery();
@@ -15,7 +16,7 @@ const UserList = () => {
     const filteredUsers = users?.filter((u) =>
         u.name.firstname.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
+     if (isLoading) return <Skeleton title="Users" />;
     if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
     return (
         <section>
