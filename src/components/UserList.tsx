@@ -19,7 +19,7 @@ const UserList = () => {
     if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
     return (
         <section>
-            <h2 className="text-2xl font-semibold mb-4">Users</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Users</h2>
             <SearchInput placeholder="Search users..." value={searchTerm} onChange={setSearchTerm} />
             {isLoading && <p className="text-sm text-gray-400 mt-4">Loading users...</p>}
             <ul className="space-y-2 mt-4 max-h-[500px] overflow-y-auto pr-1">
