@@ -1,9 +1,17 @@
+/**
+ * UserDetailPage
+ * 
+ * Server component that receives user ID from route params.
+ * Displays basic info about the selected user.
+ * Can be extended to fetch more details using RTK Query.
+ */
 import UserDetail from "@/components/UserDetail";
 export default async function Page({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+  // Get user ID from dynamic route params
   const { id } = await params;
 
   return (
