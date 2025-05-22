@@ -48,8 +48,6 @@ const ProductList = () => {
             setHasMore(filtered.length > pageCount);
         }
     }, [products, searchTerm]);
-
-
     if (isLoading) return <Skeleton title="Products" />;
     if (isError) return <p className="text-center text-red-500">Error receiving products!</p>;
 
