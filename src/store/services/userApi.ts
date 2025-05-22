@@ -1,3 +1,10 @@
+/**
+ * userApi
+ * 
+ * RTK Query API service to fetch user data from fakestoreapi.com
+ * Exposes getUsers and getUserById query hooks.
+ */
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({
