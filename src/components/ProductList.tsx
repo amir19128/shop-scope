@@ -38,7 +38,7 @@ const ProductList = () => {
             setDisplayedData(filtered.slice(0, pageCount));
             setHasMore(filtered.length > pageCount);
         }
-    }, [products]);
+    }, [products,searchTerm]);
 
     if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
     if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
