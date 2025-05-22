@@ -15,8 +15,8 @@ const UserList = () => {
     const filteredUsers = users?.filter((u) =>
         u.name.firstname.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
-    if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
+    if (isLoading) return <p className="text-center text-white">Loading...</p>;
+    if (isError) return <p className="text-center text-red-500">Error receiving users!</p>;
     return (
         <section>
             <h2 className="text-2xl font-semibold mb-4 text-white">Users</h2>
