@@ -1,8 +1,10 @@
 'use client';
 
 import { useGetProductsQuery } from '@/store/services/productApi';
+import { addProduct } from '@/store/slices/selectedProductsSlice';
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useDispatch } from 'react-redux';
 
 const pageCount: number = 10;
 
@@ -10,6 +12,7 @@ const ProductList = () => {
     const { data: products, isLoading, isError } = useGetProductsQuery();
     const [displayedData, setDisplayedData] = useState<any[]>([]);
     const [hasMore, setHasMore] = useState(true);
+    const dispatch = useDispatch();
     const fetchMoreProducts = () => {
         if (!products) return;
 
@@ -50,7 +53,8 @@ const ProductList = () => {
                     {displayedData.map((product) => (
                         <li
                             key={product.id}
-                            className="bg-gray-800 p-4 rounded shadow hover:bg-gray-700 cursor-pointer"
+                            className="cursor-pointer"
+                            onClick={() => dispatch(addProduct(product))}
                         >
                             <h3 className="text-lg font-bold">{product.title}</h3>
                             <p className="text-sm text-gray-300 truncate">{product.description}</p>
