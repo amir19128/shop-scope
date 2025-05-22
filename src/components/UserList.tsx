@@ -10,7 +10,7 @@ const UserList = () => {
         router.push(`/users/${id}`);
     };
     if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
-    if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
+    if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>; 
     return (
         <>
             <div>UserList</div>
