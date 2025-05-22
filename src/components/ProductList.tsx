@@ -41,9 +41,8 @@ const ProductList = () => {
         }
     }, [products, searchTerm]);
 
-    if (isLoading)
-        return <Skeleton title="Products" />;
-    if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
+    if (isLoading) return <Skeleton title="Products" />;
+    if (isError) return <p className="text-center text-red-500">Error in receiving products!</p>;
 
     return (
         <section>
