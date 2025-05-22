@@ -1,10 +1,23 @@
-import { SearchInput } from "./SearchInput";
+'use client';
 
-const UserList = () => (
-    <section>
-        {/* Users List Component */}
-        <h2 className="text-xl font-semibold mb-2">لیست کاربران </h2>
-        <SearchInput />
-    </section>
-);
-export default UserList;
+import { useGetUsersQuery } from "@/store/services/userApi";
+
+const UserList = () => {
+    const { data: users, isLoading, isError } = useGetUsersQuery();
+    return (
+        <>
+            <div>UserList</div>
+            <ul className="">
+                {users?.map((user) => (
+                    <li
+                        key={user.id}
+                        className="cursor-pointer"
+                    >
+                        {user?.name?.firstname}
+                    </li>
+                ))}
+            </ul>
+        </>
+    )
+}
+export default UserList
