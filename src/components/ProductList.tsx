@@ -40,8 +40,8 @@ const ProductList = () => {
         }
     }, [products, searchTerm]);
 
-    if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
-    if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
+    if (isLoading) return <p className="text-center text-white">Loading...</p>;
+    if (isError) return <p className="text-center text-red-500">Error receiving products!</p>;
 
     return (
         <section>

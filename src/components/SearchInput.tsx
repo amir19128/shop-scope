@@ -6,7 +6,7 @@ interface Props {
     placeholder?: string;
 }
 
-const SearchInput = ({ value = '', onChange, placeholder = 'جستجو...' }: Props) => {
+const SearchInput = ({ value = '', onChange, placeholder = 'ُSearch...' }: Props) => {
     return (
         <input
             type="text"
