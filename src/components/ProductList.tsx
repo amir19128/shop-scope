@@ -5,6 +5,7 @@ import { addProduct } from '@/store/slices/selectedProductsSlice';
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch } from 'react-redux';
+import SearchInput from './SearchInput';
 
 const pageCount: number = 10;
 
@@ -12,26 +13,32 @@ const ProductList = () => {
     const { data: products, isLoading, isError } = useGetProductsQuery();
     const [displayedData, setDisplayedData] = useState<any[]>([]);
     const [hasMore, setHasMore] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
     const dispatch = useDispatch();
     const fetchMoreProducts = () => {
         if (!products) return;
-
-        const nextPage = products.slice(
+        const filtered = products.filter((p) =>
+            p.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        const nextPage = filtered.slice(
             displayedData.length,
             displayedData.length + pageCount
         );
 
         setDisplayedData((prev) => [...prev, ...nextPage]);
 
-        if (displayedData.length + pageCount >= products.length)
+        if (displayedData.length + pageCount >= filtered.length)
             setHasMore(false);
     };
     useEffect(() => {
         if (products) {
-            setDisplayedData(products.slice(0, pageCount));
-            setHasMore(products.length > pageCount);
+            const filtered = products.filter((p) =>
+                p.title.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setDisplayedData(filtered.slice(0, pageCount));
+            setHasMore(filtered.length > pageCount);
         }
-    }, [products]);
+    }, [products,searchTerm]);
 
     if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
     if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
@@ -39,6 +46,7 @@ const ProductList = () => {
     return (
         <section>
             <h2 className="text-xl font-semibold mb-2">Products</h2>
+            <SearchInput placeholder="Search products..." value={searchTerm} onChange={setSearchTerm} />
             <InfiniteScroll
                 dataLength={displayedData.length}
                 next={fetchMoreProducts}
