@@ -15,18 +15,24 @@ const SelectedProducts = () => {
     );
     return (
         <section>
-            <h2 className="">Selected Products</h2>
-            <SearchInput placeholder="Search selected..." value={searchTerm} onChange={setSearchTerm} />
-            {selected.length === 0 && <p className="">محصولی انتخاب نشده</p>}
-            <ul className="">
+            <h2 className="text-2xl font-semibold mb-4">Selected Products</h2>
+            <SearchInput
+                placeholder="Search selected..."
+                value={searchTerm}
+                onChange={setSearchTerm}
+            />
+            {filtered.length === 0 && (
+                <p className="text-sm text-gray-400 mt-4">No products selected.</p>
+            )}
+            <ul className="space-y-2 mt-4 max-h-[500px] overflow-y-auto pr-1">
                 {filtered.map((product) => (
                     <li
                         key={product.id}
-                        className=""
                         onClick={() => dispatch(removeProduct(product.id))}
+                        className="p-3 rounded bg-blue-800 hover:bg-blue-700 cursor-pointer transition-all"
                     >
-                        <h4 className="font-bold">{product.title}</h4>
-                        <p className="text-sm">${product.price}</p>
+                        <p className="font-medium text-white">{product.title}</p>
+                        <p className="text-sm text-green-300">${product.price}</p>
                     </li>
                 ))}
             </ul>
