@@ -1,3 +1,11 @@
+/**
+ * UserList Component
+ * 
+ * Fetches list of users from the API using RTK Query.
+ * Allows searching users by firstname.
+ * Clicking on a user navigates to their detail page via dynamic route (/users/[id]).
+ */
+
 'use client';
 
 import { useGetUsersQuery } from "@/store/services/userApi";
@@ -15,6 +23,8 @@ const UserList = () => {
     const filteredUsers = users?.filter((u) =>
         u.name.firstname.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    // Filter users based on search term (first name)
+
     if (isLoading) return <p className="text-center text-white">Loading...</p>;
     if (isError) return <p className="text-center text-red-500">Error receiving users!</p>;
     return (
