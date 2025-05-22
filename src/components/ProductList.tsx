@@ -45,7 +45,7 @@ const ProductList = () => {
 
     return (
         <section>
-            <h2 className="text-2xl font-semibold mb-4">Products</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Products</h2>
             <SearchInput placeholder="Search products..." value={searchTerm} onChange={setSearchTerm} />
             <InfiniteScroll
                 dataLength={displayedData.length}

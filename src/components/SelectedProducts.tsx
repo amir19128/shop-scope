@@ -15,7 +15,7 @@ const SelectedProducts = () => {
     );
     return (
         <section>
-            <h2 className="text-2xl font-semibold mb-4">Selected Products</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-white">Selected Products</h2>
             <SearchInput
                 placeholder="Search selected..."
                 value={searchTerm}
