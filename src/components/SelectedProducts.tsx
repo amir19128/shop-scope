@@ -1,3 +1,10 @@
+/**
+ * SelectedProducts Component
+ * 
+ * Displays a list of products the user has selected.
+ * Allows removing items by clicking on them.
+ * Includes a search input to filter selected products by title.
+ */
 'use client';
 import { RootState } from '@/store';
 import { useSelector, useDispatch } from 'react-redux';
@@ -28,7 +35,7 @@ const SelectedProducts = () => {
                 {filtered.map((product) => (
                     <li
                         key={product.id}
-                        onClick={() => dispatch(removeProduct(product.id))}
+                        onClick={() => dispatch(removeProduct(product.id))}// Remove product from selected list via Redux
                         className="p-3 rounded bg-blue-800 hover:bg-blue-700 cursor-pointer transition-all"
                     >
                         <p className="font-medium text-white">{product.title}</p>

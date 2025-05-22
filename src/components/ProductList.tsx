@@ -1,3 +1,11 @@
+/**
+ * ProductList Component
+ * 
+ * Fetches product list from API using RTK Query,
+ * displays 10 products initially and loads more as user scrolls (infinite scroll).
+ * Allows users to search products by title.
+ * Clicking on a product adds it to the selected product list via Redux.
+ */
 'use client';
 
 import { useGetProductsQuery } from '@/store/services/productApi';
@@ -41,9 +49,9 @@ const ProductList = () => {
         }
     }, [products, searchTerm]);
 
-    if (isLoading)
-        return <Skeleton title="Products" />;
-    if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
+
+    if (isLoading) return <Skeleton title="Products" />;
+    if (isError) return <p className="text-center text-red-500">Error receiving products!</p>;
 
     return (
         <section>
@@ -63,7 +71,7 @@ const ProductList = () => {
                     {displayedData.map((product) => (
                         <li
                             key={product.id}
-                            onClick={() => dispatch(addProduct(product))}
+                            onClick={() => dispatch(addProduct(product))} // Add selected product to Redux state (selectedProducts slice)
                             className="cursor-pointer p-4 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all duration-200 shadow-sm"
                         >
                             <h3 className="font-bold text-base mb-1 text-blue-300">{product.title}</h3>
