@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch } from 'react-redux';
 import SearchInput from './SearchInput';
+import Skeleton from './Skeleton';
 
 const pageCount: number = 10;
 
@@ -48,7 +49,8 @@ const ProductList = () => {
         }
     }, [products, searchTerm]);
 
-    if (isLoading) return <p className="text-center text-white">Loading...</p>;
+
+    if (isLoading) return <Skeleton title="Products" />;
     if (isError) return <p className="text-center text-red-500">Error receiving products!</p>;
 
     return (

@@ -12,6 +12,7 @@ import { useGetUsersQuery } from "@/store/services/userApi";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import SearchInput from "./SearchInput";
+import Skeleton from "./Skeleton";
 
 const UserList = () => {
     const { data: users, isLoading, isError } = useGetUsersQuery();
@@ -23,10 +24,10 @@ const UserList = () => {
     const filteredUsers = users?.filter((u) =>
         u.name.firstname.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    // Filter users based on search term (first name)
-
-    if (isLoading) return <p className="text-center text-white">Loading...</p>;
+  
+     if (isLoading) return <Skeleton title="Users" />;
     if (isError) return <p className="text-center text-red-500">Error receiving users!</p>;
+  
     return (
         <section>
             <h2 className="text-2xl font-semibold mb-4 text-white">Users</h2>
