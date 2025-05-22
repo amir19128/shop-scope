@@ -16,8 +16,8 @@ const UserList = () => {
     const filteredUsers = users?.filter((u) =>
         u.name.firstname.toLowerCase().includes(searchTerm.toLowerCase())
     );
-     if (isLoading) return <Skeleton title="Products" />;
-    if (isError) return <p className="text-center text-red-500">Error in receiving users!</p>;
+     if (isLoading) return <Skeleton title="Users" />;
+    if (isError) return <p className="text-center text-red-500">Error receiving users!</p>;
     return (
         <section>
             <h2 className="text-2xl font-semibold mb-4 text-white">Users</h2>
