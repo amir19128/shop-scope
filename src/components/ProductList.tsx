@@ -38,35 +38,35 @@ const ProductList = () => {
             setDisplayedData(filtered.slice(0, pageCount));
             setHasMore(filtered.length > pageCount);
         }
-    }, [products,searchTerm]);
+    }, [products, searchTerm]);
 
     if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
     if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
 
     return (
         <section>
-            <h2 className="text-xl font-semibold mb-2">Products</h2>
+            <h2 className="text-2xl font-semibold mb-4">Products</h2>
             <SearchInput placeholder="Search products..." value={searchTerm} onChange={setSearchTerm} />
             <InfiniteScroll
                 dataLength={displayedData.length}
                 next={fetchMoreProducts}
                 hasMore={hasMore}
-                loader={<p className="text-center py-4 text-sm text-gray-400">در حال دریافت بیشتر...</p>}
-                height={600}
+                height={500}
+                loader={<p className="text-sm text-center text-gray-500 my-2">Loading more...</p>}
                 endMessage={
-                    <p className=""></p>
+                    <p className="text-sm text-center text-green-500 my-4">All products loaded.</p>
                 }
             >
-                <ul className="space-y-2 overflow-y-auto">
+                <ul className="space-y-3 mt-4">
                     {displayedData.map((product) => (
                         <li
                             key={product.id}
-                            className="cursor-pointer"
                             onClick={() => dispatch(addProduct(product))}
+                            className="cursor-pointer p-4 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all duration-200 shadow-sm"
                         >
-                            <h3 className="text-lg font-bold">{product.title}</h3>
-                            <p className="text-sm text-gray-300 truncate">{product.description}</p>
-                            <p className="text-green-400 mt-1">${product.price}</p>
+                            <h3 className="font-bold text-base mb-1 text-blue-300">{product.title}</h3>
+                            <p className="text-sm text-gray-300 line-clamp-2">{product.description}</p>
+                            <p className="text-sm mt-2 text-green-400 font-semibold">${product.price}</p>
                         </li>
                     ))}
                 </ul>

@@ -18,21 +18,25 @@ const UserList = () => {
     if (isLoading) return <p className="text-center">در حال بارگذاری محصولات...</p>;
     if (isError) return <p className="text-center text-red-500">خطا در دریافت محصولات!</p>;
     return (
-        <>
-            <div>UserList</div>
+        <section>
+            <h2 className="text-2xl font-semibold mb-4">Users</h2>
             <SearchInput placeholder="Search users..." value={searchTerm} onChange={setSearchTerm} />
-            <ul className="">
+            {isLoading && <p className="text-sm text-gray-400 mt-4">Loading users...</p>}
+            <ul className="space-y-2 mt-4 max-h-[500px] overflow-y-auto pr-1">
                 {filteredUsers?.map((user) => (
                     <li
                         key={user.id}
-                        className="cursor-pointer"
                         onClick={() => handleClick(user.id)}
+                        className="p-3 rounded bg-gray-700 hover:bg-gray-600 cursor-pointer transition-all"
                     >
-                        {user?.name?.firstname}
+                        <p className="font-medium text-white">
+                            {user.name.firstname} {user.name.lastname}
+                        </p>
+                        <p className="text-sm text-gray-300">{user.email}</p>
                     </li>
                 ))}
             </ul>
-        </>
+        </section>
     )
 }
 export default UserList
