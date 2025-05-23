@@ -9,24 +9,10 @@
  */
 
 import { useGetUsersQuery } from "@/store/services/userApi";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import SearchInput from "./SearchInput";
-import Skeleton from "./Skeleton";
-import Link from "next/link";
-
-/**
- * User type — should match the structure from the API
- */
-interface User {
-  id: number;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
-  email: string;
-}
-
+import Skeleton from "../Skeleton";
+import SearchInput from "../SearchInput";
+import UserItem from "./UserItem";
 const UserList = () => {
   const { data: users, isLoading, isError } = useGetUsersQuery();
   const [searchTerm, setSearchTerm] = useState('');
@@ -51,14 +37,7 @@ const UserList = () => {
       />
       <ul className="space-y-2 mt-4 max-h-[500px] overflow-y-auto pr-1">
         {filteredUsers?.map((user) => (
-          <Link key={user.id} href={`/users/${user.id}`}>
-            <li className="p-3 rounded bg-gray-700 hover:bg-gray-600 cursor-pointer transition-all">
-              <p className="font-medium text-white">
-                {user.name.firstname} {user.name.lastname}
-              </p>
-              <p className="text-sm text-gray-300">{user.email}</p>
-            </li>
-          </Link>
+          <UserItem key={user.id} user={user} />
         ))}
       </ul>
     </section>
