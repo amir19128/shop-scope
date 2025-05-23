@@ -37,7 +37,6 @@ const ProductList = () => {
   const dispatch = useDispatch();
   // Get list of selected products from Redux
   const selectedProducts = useSelector((state: RootState) => state.selectedProducts.items);
-  console.log(selectedProducts);
   /**
    * Fetch next set of products for infinite scroll
    */
@@ -101,23 +100,31 @@ const ProductList = () => {
         }
       >
         <ul className="space-y-3 mt-4">
-          {displayedData.map((product) => (
-            <li
-              key={product.id}
-              onClick={() => dispatch(addProduct(product))}
-              className="cursor-pointer p-4 rounded-lg bg-gray-700 hover:bg-gray-600 transition-all duration-200 shadow-sm"
-            >
-              <h3 className="font-bold text-base mb-1 text-blue-300">
-                {product.title}
-              </h3>
-              <p className="text-sm text-gray-300 line-clamp-2">
-                {product.description}
-              </p>
-              <p className="text-sm mt-2 text-green-400 font-semibold">
-                ${product.price}
-              </p>
-            </li>
-          ))}
+          {displayedData.map((product) => {
+            // Check if product is already selected
+            const isSelected = selectedProducts.some((item) => item.id === product.id);
+
+            return (
+              <li
+                key={product.id}
+                onClick={() => dispatch(addProduct(product))}
+                className={`cursor-pointer p-4 rounded-lg transition-all duration-200 shadow-sm ${isSelected
+                    ? 'bg-green-700 border border-green-400'
+                    : 'bg-gray-700 hover:bg-gray-600'
+                  }`}
+              >
+                <h3 className="font-bold text-base mb-1 text-blue-300">
+                  {product.title}
+                </h3>
+                <p className="text-sm text-gray-300 line-clamp-2">
+                  {product.description}
+                </p>
+                <p className="text-sm mt-2 text-green-400 font-semibold">
+                  ${product.price}
+                </p>
+              </li>
+            );
+          })}
         </ul>
       </InfiniteScroll>
     </section>
