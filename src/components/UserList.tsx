@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import SearchInput from "./SearchInput";
 import Skeleton from "./Skeleton";
+import Link from "next/link";
 
 /**
  * User type — should match the structure from the API
@@ -28,16 +29,11 @@ interface User {
 
 const UserList = () => {
   const { data: users, isLoading, isError } = useGetUsersQuery();
-  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
-
   /**
    * Navigate to user's detail page
    * @param id - User ID
    */
-  const handleClick = (id: number) => {
-    router.push(`/users/${id}`);
-  };
 
   /**
    * Filter users by search term (first name)
@@ -60,16 +56,14 @@ const UserList = () => {
       />
       <ul className="space-y-2 mt-4 max-h-[500px] overflow-y-auto pr-1">
         {filteredUsers?.map((user) => (
-          <li
-            key={user.id}
-            onClick={() => handleClick(user.id)}
-            className="p-3 rounded bg-gray-700 hover:bg-gray-600 cursor-pointer transition-all"
-          >
-            <p className="font-medium text-white">
-              {user.name.firstname} {user.name.lastname}
-            </p>
-            <p className="text-sm text-gray-300">{user.email}</p>
-          </li>
+          <Link key={user.id} href={`/users/${user.id}`}>
+            <li className="p-3 rounded bg-gray-700 hover:bg-gray-600 cursor-pointer transition-all">
+              <p className="font-medium text-white">
+                {user.name.firstname} {user.name.lastname}
+              </p>
+              <p className="text-sm text-gray-300">{user.email}</p>
+            </li>
+          </Link>
         ))}
       </ul>
     </section>
