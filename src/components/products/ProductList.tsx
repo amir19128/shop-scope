@@ -13,8 +13,8 @@ import { addProduct } from '@/store/slices/selectedProductsSlice';
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useDispatch, useSelector } from 'react-redux';
-import SearchInput from './SearchInput';
-import Skeleton from './Skeleton';
+import SearchInput from '../SearchInput';
+import Skeleton from '../Skeleton';
 import { RootState } from '@/store';
 
 /**

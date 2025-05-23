@@ -1,4 +1,4 @@
-import ProductList from "@/components/ProductList";
+import ProductList from "@/components/products/ProductList";
 import SelectedProducts from "@/components/SelectedProducts";
 import UserList from "@/components/UserList";
 export default function Home() {
