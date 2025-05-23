@@ -10,9 +10,9 @@
 
 import { RootState } from '@/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeProduct } from '@/store/slices/selectedProductsSlice';
 import { useState } from 'react';
 import SearchInput from '../SearchInput';
+import SelectedProductItem from './SelectedProductItem';
 
 /**
  * Product type — matches product slice structure
@@ -29,7 +29,6 @@ const SelectedProducts = () => {
     (state: RootState) => state.selectedProducts.items
   );
 
-  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   // Filter selected products by search term (title match)
@@ -50,14 +49,7 @@ const SelectedProducts = () => {
       )}
       <ul className="space-y-2 mt-4 max-h-[500px] overflow-y-auto pr-1">
         {filtered.map((product) => (
-          <li
-            key={product.id}
-            onClick={() => dispatch(removeProduct(product.id))} // Remove product from selected list via Redux
-            className="p-3 rounded bg-blue-800 hover:bg-blue-700 cursor-pointer transition-all"
-          >
-            <p className="font-medium text-white">{product.title}</p>
-            <p className="text-sm text-green-300">${product.price}</p>
-          </li>
+          <SelectedProductItem key={product.id} product={product} />
         ))}
       </ul>
     </section>
