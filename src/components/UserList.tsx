@@ -31,11 +31,6 @@ const UserList = () => {
   const { data: users, isLoading, isError } = useGetUsersQuery();
   const [searchTerm, setSearchTerm] = useState('');
   /**
-   * Navigate to user's detail page
-   * @param id - User ID
-   */
-
-  /**
    * Filter users by search term (first name)
    */
   const filteredUsers = users?.filter((u) =>
