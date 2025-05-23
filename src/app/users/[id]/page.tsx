@@ -1,3 +1,5 @@
+import UserDetail from "@/components/users/UserDetail";
+
 /**
  * UserDetailPage
  * 
@@ -5,7 +7,6 @@
  * Displays basic info about the selected user.
  * Can be extended to fetch more details using RTK Query.
  */
-import UserDetail from "@/components/UserDetail";
 export default async function Page({
   params,
 }: {
