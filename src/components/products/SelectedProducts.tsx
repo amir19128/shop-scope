@@ -12,7 +12,7 @@ import { RootState } from '@/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeProduct } from '@/store/slices/selectedProductsSlice';
 import { useState } from 'react';
-import SearchInput from './SearchInput';
+import SearchInput from '../SearchInput';
 
 /**
  * Product type — matches product slice structure

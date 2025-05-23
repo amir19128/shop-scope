@@ -9,11 +9,10 @@
  */
 
 import { useGetUsersQuery } from "@/store/services/userApi";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import SearchInput from "./SearchInput";
-import Skeleton from "./Skeleton";
 import Link from "next/link";
+import Skeleton from "../Skeleton";
+import SearchInput from "../SearchInput";
 
 /**
  * User type — should match the structure from the API

@@ -1,6 +1,7 @@
 import ProductList from "@/components/products/ProductList";
-import SelectedProducts from "@/components/SelectedProducts";
-import UserList from "@/components/UserList";
+import SelectedProducts from "@/components/products/SelectedProducts";
+import UserList from "@/components/users/UserList";
+
 export default function Home() {
   return (
     <main className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
