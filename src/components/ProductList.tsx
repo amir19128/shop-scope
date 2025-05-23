@@ -12,9 +12,10 @@ import { useGetProductsQuery } from '@/store/services/productApi';
 import { addProduct } from '@/store/slices/selectedProductsSlice';
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchInput from './SearchInput';
 import Skeleton from './Skeleton';
+import { RootState } from '@/store';
 
 /**
  * Product type — ideally should be imported from productApi or types.ts
@@ -34,7 +35,9 @@ const ProductList = () => {
   const [hasMore, setHasMore] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
-
+  // Get list of selected products from Redux
+  const selectedProducts = useSelector((state: RootState) => state.selectedProducts.items);
+  console.log(selectedProducts);
   /**
    * Fetch next set of products for infinite scroll
    */
